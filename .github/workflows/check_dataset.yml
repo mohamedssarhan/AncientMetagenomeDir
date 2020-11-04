@@ -19,27 +19,27 @@ jobs:
         run: mkdir validation/
       - name: Add 'dir check version
         run: |
-          echo -e "$(ancientMetagenomeDirCheck --version)" >> validation/validation_results.txt
+          echo -e "$(ancientMetagenomeDirCheck --version)" >> validation/sample_validation_results.txt
       - name: test ancient host-associated metagenome (e.g. microbiomes)
         run: |
-          echo -e "# Ancient Metagenome Host Associated\n\`\`\`" >> validation/validation_results.txt 
-          ancientMetagenomeDirCheck -a ancientmetagenome-hostassociated/ancientmetagenome-hostassociated.tsv ancientmetagenome-hostassociated/ancientmetagenome-hostassociated_schema.json >> validation/validation_results.txt
-          echo -e "\`\`\`" >> validation/validation_results.txt
+          echo -e "# Ancient Metagenome Host Associated\n\`\`\`" >> validation/sample_validation_results.txt 
+          ancientMetagenomeDirCheck -a ancientmetagenome-hostassociated/ancientmetagenome-hostassociatedsample.tsv ancientmetagenome-hostassociated/ancientmetagenome-hostassociated_schema.json >> validation/sample_validation_results.txt
+          echo -e "\`\`\`" >> validation/sample_validation_results.txt
       - name: test ancient single microbial genomes (e.g. pathogens)
         run: |
-          echo -e "# Ancient Single Genome Host Associated\n\`\`\`" >> validation/validation_results.txt 
-          ancientMetagenomeDirCheck -a ancientsinglegenome-hostassociated/ancientsinglegenome-hostassociated.tsv ancientsinglegenome-hostassociated/ancientsinglegenome-hostassociated_schema.json >> validation/validation_results.txt
-          echo -e "\`\`\`" >> validation/validation_results.txt
+          echo -e "# Ancient Single Genome Host Associated\n\`\`\`" >> validation/sample_validation_results.txt 
+          ancientMetagenomeDirCheck -a ancientsinglegenome-hostassociated/ancientsinglegenome-hostassociatedsample.tsv ancientsinglegenome-hostassociated/ancientsinglegenome-hostassociated_schema.json >> validation/sample_validation_results.txt
+          echo -e "\`\`\`" >> validation/sample_validation_results.txt
       - name: test ancient environmental (e.g. sediment)
         run: |
-          echo -e "# Ancient Metagenome Environmental\n\`\`\`" >> validation/validation_results.txt 
-          ancientMetagenomeDirCheck -a ancientmetagenome-environmental/ancientmetagenome-environmental.tsv ancientmetagenome-environmental/ancientmetagenome-environmental_schema.json >> validation/validation_results.txt
-          echo -e "\`\`\`" >> validation/validation_results.txt
+          echo -e "# Ancient Metagenome Environmental\n\`\`\`" >> validation/sample_validation_results.txt 
+          ancientMetagenomeDirCheck -a ancientmetagenome-environmental/ancientmetagenome-environmentalsample.tsv ancientmetagenome-environmental/ancientmetagenome-environmental_schema.json >> validation/sample_validation_results.txt
+          echo -e "\`\`\`" >> validation/sample_validation_results.txt
       - uses: actions/upload-artifact@v1
         if: always()
         with:
           name: results
-          path: validation/validation_results.txt
+          path: validation/sample_validation_results.txt
       - uses: actions/download-artifact@v1
         if: always()
         with:
@@ -50,4 +50,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          path: validation/validation_results.txt
+          path: validation/sample_validation_results.txt
