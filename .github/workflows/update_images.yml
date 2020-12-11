@@ -14,11 +14,11 @@ jobs:
       - uses: actions/checkout@v2
      
       - name: Generate timeline plots
-      - run: Rscript assets/analysis/plot_timelines.R
+        run: Rscript assets/analysis/plot_timelines.R
       - name: Generate map plots
-      - run: Rscript assets/analysis/plot_maps.R
+        run: Rscript assets/analysis/plot_maps.R
       - name: Generate age plots
-      - run: Rscript assets/analysis/plot_age.R
+        run: Rscript assets/analysis/plot_age.R
      
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
